@@ -14,7 +14,7 @@
   "videoPath": ""
  },
  {
-  "chapterId": 2,
+  "chapterId": 2 ,
   "videoId": "1",
   "title": "第2章 Android UI开发",
   "secondTitle": "帧布局",
