@@ -91,7 +91,7 @@
   "videoPath": ""
  },
  {
-  "chapterId": 7,
+  "chapterId": 7 ,
   "videoId": "2",
   "title": "第7章 服务",
   "secondTitle": "广播类型与常用的广播接收者",
