@@ -5,4 +5,5 @@ package cn.edu.gdmec.android.boxuegu.activity;
  */
 
 public class LoginActivity {
+
 }
