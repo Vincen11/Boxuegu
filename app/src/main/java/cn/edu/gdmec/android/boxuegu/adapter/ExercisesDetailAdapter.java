@@ -230,5 +230,4 @@ public class ExercisesDetailAdapter extends BaseAdapter{
         void onSelectC(int position,ImageView iv_a,ImageView iv_b,ImageView iv_c,ImageView iv_d);
         void onSelectD(int position,ImageView iv_a,ImageView iv_b,ImageView iv_c,ImageView iv_d);
     }
-
 }
