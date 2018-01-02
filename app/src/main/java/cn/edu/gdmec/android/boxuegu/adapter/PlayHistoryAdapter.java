@@ -19,50 +19,43 @@ import cn.edu.gdmec.android.boxuegu.bean.VideoBean;
  * Created by student on 17/12/27.
  */
 
-public class PlayHistoryAdapter extends BaseAdapter {
-    private Context mContext;
+public class PlayHistoryAdapter extends BaseAdapter{
+    private Context mContent;
     private List<VideoBean> vbl;
-
-    public PlayHistoryAdapter(Context context) {
-        this.mContext = context;
+    public PlayHistoryAdapter(Context context){
+        this.mContent=context;
     }
-
-    public void setData(List<VideoBean> vbl) {
-        this.vbl = vbl;
+    public void setData(List<VideoBean> vbl){
+        this.vbl=vbl;
         notifyDataSetChanged();
     }
-
     @Override
-    public int getCount() {
-        return vbl == null ? 0 : vbl.size();
+    public int getCount(){
+        return vbl==null ? 0 : vbl.size();
     }
-
     @Override
-    public VideoBean getItem(int position) {
-        return vbl == null ? null : vbl.get(position);
+    public VideoBean getItem(int position){
+        return vbl==null ? null : vbl.get(position);
     }
-
     @Override
-    public long getItemId(int position) {
+    public long getItemId(int position){
         return position;
     }
-
     @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
+    public View getView(final int positopn, View convertView, ViewGroup parent){
         final ViewHolder vh;
-        if (convertView == null) {
-            vh = new ViewHolder();
-            convertView = LayoutInflater.from(mContext).inflate(
-                    R.layout.play_history_list_item, null);
-            vh.tv_title=(TextView)convertView.findViewById(R.id.tv_adapter_title);
-            vh.tv_video_title=(TextView)convertView.findViewById(R.id.tv_video_title);
-            vh.iv_icon = (ImageView)convertView.findViewById(R.id.iv_video_icon);
+        if (convertView==null){
+            vh=new ViewHolder();
+            convertView= LayoutInflater.from(mContent).inflate(R.layout.play_history_list_item,null);
+            vh.tv_title=(TextView) convertView.findViewById(R.id.tv_adapter_title);
+            vh.tv_video_title=(TextView) convertView.findViewById(R.id.tv_video_title);
+            vh.iv_icon=(ImageView) convertView.findViewById(R.id.iv_video_icon);
             convertView.setTag(vh);
         }else {
-            vh = (ViewHolder)convertView.getTag();
+            vh=(ViewHolder) convertView.getTag();
         }
-        final VideoBean bean = getItem(position);
-        if(bean != null){
+        final VideoBean bean=getItem(positopn);
+        if (bean!=null){
             vh.tv_title.setText(bean.title);
             vh.tv_video_title.setText(bean.secondTitle);
             switch (bean.chapterId){
@@ -98,22 +91,24 @@ public class PlayHistoryAdapter extends BaseAdapter {
                     break;
                 default:
                     vh.iv_icon.setImageResource(R.drawable.video_play_icon1);
+                    break;
             }
         }
-        convertView.setOnClickListener(new View.OnClickListener() {
+        convertView.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View v) {
-                if(bean == null) return;
-                Intent intent = new Intent(mContext, VideoPlayActivity.class);
+            public void onClick(View v){
+                if (bean==null){
+                    return;
+                }
+                Intent intent=new Intent(mContent, VideoPlayActivity.class);
                 intent.putExtra("videoPath",bean.videoPath);
-                mContext.startActivity(intent);
+                mContent.startActivity(intent);
             }
         });
-        return  convertView;
+        return convertView;
     }
-
-    class ViewHolder {
-        public TextView tv_title, tv_video_title;
+    class ViewHolder{
+        public TextView tv_title,tv_video_title;
         public ImageView iv_icon;
     }
 }
