@@ -46,9 +46,9 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
         tv_main_title.setText("个人资料");
         rl_title_bar=(RelativeLayout) findViewById(R.id.title_bar);
         rl_title_bar.setBackgroundColor(Color.parseColor("#30B4FF"));
-        rl_nickName=(RelativeLayout) findViewById(R.id.rl_nickname);
+        rl_nickName=(RelativeLayout) findViewById(R.id.rl_nickName);
         rl_sex=(RelativeLayout) findViewById(R.id.rl_sex);
-        rl_signature=(RelativeLayout) findViewById(R.id.rl_signature);
+        rl_signature=(RelativeLayout) findViewById(R.id.rl_singature);
         tv_nicName=(TextView) findViewById(R.id.tv_nickName);
         tv_user_name=(TextView) findViewById(R.id.tv_user_name);
         tv_sex=(TextView) findViewById(R.id.tv_sex);
@@ -85,7 +85,7 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
             case R.id.tv_back:
                 this.finish();
                 break;
-            case R.id.rl_nickname:
+            case R.id.rl_nickName:
                 String name=tv_nicName.getText().toString();
                 Bundle bdName=new Bundle();
                 bdName.putString("content",name);
@@ -97,7 +97,7 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
                 String sex=tv_sex.getText().toString();
                 sexDialog(sex);
                 break;
-            case R.id.rl_signature:
+            case R.id.rl_singature:
                 String signature=tv_signature.getText().toString();
                 Bundle bdSignature=new Bundle();
                 bdSignature.putString("content",signature);
