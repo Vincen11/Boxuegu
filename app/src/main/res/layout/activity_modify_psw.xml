@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/register_bg">
+    android:background="@drawable/register_bg"
+    android:orientation="vertical">
     <include layout="@layout/main_title_bar"/>
     <EditText
-        android:id="@+id/et_original_psw"
         android:layout_width="fill_parent"
         android:layout_height="48dp"
+        android:id="@+id/et_original_psw"
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="35dp"
         android:layout_marginRight="35dp"
@@ -24,9 +24,9 @@
         android:textColorHint="#a3a3a3"
         android:textSize="14sp"/>
     <EditText
-        android:id="@+id/et_new_psw"
         android:layout_width="fill_parent"
         android:layout_height="48dp"
+        android:id="@+id/et_new_psw"
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="35dp"
         android:layout_marginRight="35dp"
@@ -41,9 +41,9 @@
         android:textColorHint="#a3a3a3"
         android:textSize="14sp"/>
     <EditText
-        android:id="@+id/et_new_psw_again"
         android:layout_width="fill_parent"
         android:layout_height="48dp"
+        android:id="@+id/et_new_psw_again"
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="35dp"
         android:layout_marginRight="35dp"
@@ -58,9 +58,9 @@
         android:textColorHint="#a3a3a3"
         android:textSize="14sp"/>
     <Button
-        android:id="@+id/btn_save"
         android:layout_width="fill_parent"
         android:layout_height="40dp"
+        android:id="@+id/btn_save"
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="35dp"
         android:layout_marginRight="35dp"
@@ -69,4 +69,6 @@
         android:text="保存"
         android:textColor="@android:color/white"
         android:textSize="18sp"/>
+
+
 </LinearLayout>

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
-    android:layout_width="match_parent"
+    android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@android:color/white"
     android:gravity="center_vertical"
@@ -17,8 +16,9 @@
         android:layout_height="fill_parent"
         android:id="@+id/tv_video_title"
         android:layout_marginLeft="10dp"
-        android:gravity="center_vertical"
-        android:text="［第一节]Android简介"
+        android:layout_gravity="center_vertical"
+        android:text="[第一节]Android简介"
         android:textColor="#333333"
         android:textSize="14sp"/>
+
 </LinearLayout>
