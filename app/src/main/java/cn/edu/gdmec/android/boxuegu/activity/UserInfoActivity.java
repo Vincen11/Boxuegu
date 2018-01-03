@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +25,7 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
     private String spUserName;
     private TextView tv_back;
     private TextView tv_main_title;
+    private ImageView iv_head_icon;
     private RelativeLayout rl_title_bar;
     private RelativeLayout rl_nickName;
     private RelativeLayout rl_sex;
@@ -34,6 +36,8 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
     private TextView tv_signature;
     private static final int CHANGE_NICKNAME = 1;
     private static final int CHANGE_SIGNATURE = 2;
+    String title = "选择获取图片方式";
+    String[] items = new String[]{"拍照","相册"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +51,7 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void init() {
+        iv_head_icon = (ImageView)findViewById(R.id.iv_head_icon);
         tv_back = (TextView) findViewById(R.id.tv_back);
         tv_main_title = (TextView) findViewById(R.id.tv_main_title);
         tv_main_title.setText("个人资料");
@@ -85,6 +90,9 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
         rl_nickName.setOnClickListener(this);
         rl_sex.setOnClickListener(this);
         rl_signature.setOnClickListener(this);
+        iv_head_icon.setOnClickListener(this);
+
+
     }
 
 
@@ -118,6 +126,9 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
                 bdSignature.putInt("flag",2);
                 enterActivityForResult(ChangeUserInfoActivity.class,
                         CHANGE_SIGNATURE,bdSignature);
+                break;
+            case R.id.iv_head_icon:
+                Toast.makeText(this, "本地没有此视频，暂无法播放", Toast.LENGTH_SHORT).show();
                 break;
             default:
                 break;

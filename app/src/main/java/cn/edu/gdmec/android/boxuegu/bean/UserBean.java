@@ -1,5 +1,7 @@
 package cn.edu.gdmec.android.boxuegu.bean;
 
+import android.widget.ImageView;
+
 /**
  * Created by student on 17/12/27.
  */
