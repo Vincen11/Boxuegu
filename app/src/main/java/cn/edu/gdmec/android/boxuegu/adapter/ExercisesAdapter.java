@@ -52,8 +52,8 @@ public class ExercisesAdapter extends BaseAdapter{
                     R.layout.exercises_list_item,null
             );
             vh.title = (TextView) view.findViewById(R.id.tv_title);
-            vh.content = (TextView) view.findViewById(R.id.tv_content);
-            vh.order = (TextView) view.findViewById(R.id.tv_order);
+            vh.content = (TextView)view.findViewById(R.id.tv_content);
+            vh.order = (TextView)view.findViewById(R.id.tv_order);
             view.setTag(vh);
         }else{
             vh=(ViewHolder) view.getTag();
