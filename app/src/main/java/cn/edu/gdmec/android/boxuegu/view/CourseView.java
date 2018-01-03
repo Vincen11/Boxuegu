@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +28,7 @@ import cn.edu.gdmec.android.boxuegu.utils.AnalysisUtils;
  */
 
 public class CourseView {
+
     private ListView lv_list;
     private CourseAdapter adapter;
     private List<List<CourseBean>> cbl;
@@ -36,14 +38,16 @@ public class CourseView {
     private ViewPager adPager;
     private View adBannerLay;
     private AdBannerAdapter ada;
-    public static final int MSG_AD_SLID=002;
+    public static final int MSG_AD_SLID = 002;
     private ViewPagerIndicator vpi;
     private MHandler mHandler;
     private List<CourseBean> cadl;
+
     public CourseView(FragmentActivity context){
         mContext = context;
         mInflater = LayoutInflater.from(mContext);
     }
+
     private void createView() {
         mHandler = new MHandler();
         initAdData();
@@ -51,6 +55,9 @@ public class CourseView {
         initView();
         new AdAutoSlidThread().start();
     }
+
+
+
     class MHandler extends Handler{
         @Override
         public void dispatchMessage(Message msg) {
@@ -79,6 +86,7 @@ public class CourseView {
             }
         }
     }
+
     private void initView(){
         mCurrentView = mInflater.inflate(R.layout.main_view_course,null);
         lv_list = (ListView)mCurrentView.findViewById(R.id.lv_list);
@@ -90,7 +98,7 @@ public class CourseView {
         ada = new AdBannerAdapter(mContext.getSupportFragmentManager(),mHandler);
         adPager.setAdapter(ada);
         adPager.setOnTouchListener(ada);
-        vpi = (ViewPagerIndicator) mCurrentView.findViewById(R.id.vpi_advert_indicator);
+        vpi = (ViewPagerIndicator)mCurrentView.findViewById(R.id.vpi_advert_indicator);
         vpi.setCount(ada.getSize());
         adBannerLay = mCurrentView.findViewById(R.id.rl_adBanner);
         adPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener( ) {
@@ -119,6 +127,7 @@ public class CourseView {
         ada.setDatas(cadl);
 
     }
+
     private void resetSize() {
         int sw = getScreenWith(mContext);
         int adLheight = sw / 2;
@@ -127,12 +136,14 @@ public class CourseView {
         adlp.height = adLheight;
         adBannerLay.setLayoutParams(adlp);
     }
+
     public static int getScreenWith(Activity context){
         DisplayMetrics metrics = new DisplayMetrics();
         Display display = context.getWindowManager().getDefaultDisplay();
         display.getMetrics(metrics);
         return metrics.widthPixels;
     }
+
     private void initAdData() {
         cadl = new ArrayList<CourseBean>();
         for (int i = 0;i<3;i++){
@@ -154,15 +165,17 @@ public class CourseView {
             cadl.add(bean);
         }
     }
+
     private void getCourseData(){
         try {
             InputStream is = mContext.getResources().getAssets().open("chaptertitle.xml");
             cbl = AnalysisUtils.getCourseInfos(is);
         } catch (Exception e) {
-            e.printStackTrace();
+            e.printStackTrace( );
         }
 
     }
+
     public View getView(){
         if (mCurrentView==null){
             createView();
@@ -174,4 +187,5 @@ public class CourseView {
         }
         mCurrentView.setVisibility(View.VISIBLE);
     }
+
 }

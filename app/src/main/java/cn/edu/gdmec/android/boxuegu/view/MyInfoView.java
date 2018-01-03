@@ -32,68 +32,71 @@ public class MyInfoView {
     private LayoutInflater mInflater;
     private View mCurrentView;
     public MyInfoView(Activity context){
-        mContext=context;
-        mInflater=LayoutInflater.from(mContext);
+        mContext= context;
+        mInflater= LayoutInflater.from(mContext);
     }
     private void createView(){
         initView();
     }
-    private void initView(){
-        mCurrentView=mInflater.inflate(R.layout.main_view_myinfo,null);
-        ll_head=(LinearLayout) mCurrentView.findViewById(R.id.ll_head);
-        iv_head_icon=(ImageView) mCurrentView.findViewById(R.id.iv_head_icon);
-        rl_course_history=(RelativeLayout) mCurrentView.findViewById(R.id.rl_course_history);
-        rl_setting=(RelativeLayout) mCurrentView.findViewById(R.id.rl_setting);
-        tv_user_name=(TextView) mCurrentView.findViewById(R.id.tv_user_name);
+
+    private void initView() {
+        mCurrentView = mInflater.inflate(R.layout.main_view_myinfo,null);
+        ll_head = (LinearLayout)mCurrentView.findViewById(R.id.ll_head);
+        iv_head_icon = (ImageView) mCurrentView.findViewById(R.id.iv_head_icon);
+        rl_course_history = (RelativeLayout) mCurrentView.findViewById(R.id.rl_course_history);
+        rl_setting = (RelativeLayout) mCurrentView.findViewById(R.id.rl_setting);
+        tv_user_name = (TextView) mCurrentView.findViewById(R.id.tv_user_name);
         mCurrentView.setVisibility(View.VISIBLE);
         setLoginParams(readLoginStatus());
-        ll_head.setOnClickListener(new View.OnClickListener(){
+        ll_head.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View view) {
                 if (readLoginStatus()){
-                    Intent intent=new Intent(mContext, UserInfoActivity.class);
+                    Intent intent = new Intent(mContext, UserInfoActivity.class);
                     mContext.startActivity(intent);
-                }else {
-                    Intent intent=new Intent(mContext, LoginActivity.class);
+                }else{
+                    Intent intent = new Intent(mContext, LoginActivity.class);
                     mContext.startActivityForResult(intent,1);
                 }
             }
         });
-        rl_course_history.setOnClickListener(new View.OnClickListener(){
+        rl_course_history.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View view) {
                 if (readLoginStatus()){
-                    Intent intent=new Intent(mContext, PlayHistoryActivity.class);
+                    Intent intent = new Intent(mContext, PlayHistoryActivity.class);
                     mContext.startActivity(intent);
-                }else {
-                    Toast.makeText(mContext,"您还未登录，请先登录",Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(mContext,"您还为登录，请先登录",Toast.LENGTH_SHORT).show();
                 }
             }
         });
-        rl_setting.setOnClickListener(new View.OnClickListener(){
+        rl_setting.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View view) {
                 if (readLoginStatus()){
-                    Intent intent=new Intent(mContext, SettingActivity.class);
+                    Intent intent = new Intent(mContext, SettingActivity.class);
                     mContext.startActivityForResult(intent,1);
-                }else {
-                    Toast.makeText(mContext,"您还未登录，请先登录",Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(mContext,"您还为登录，请先登录",Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
     }
+
     public void setLoginParams(boolean isLogin){
         if (isLogin){
-            tv_user_name.setText(AnalysisUtils.rendLoginUserName(mContext));
-        }else {
+            tv_user_name.setText(AnalysisUtils.readLoginUserName(mContext));
+        }
+        else{
             tv_user_name.setText("点击登录");
         }
     }
     public View getView(){
         if (mCurrentView==null){
             createView();
-        }
-        return mCurrentView;
+        }return mCurrentView;
     }
     public void showView(){
         if (mCurrentView==null){
@@ -101,9 +104,11 @@ public class MyInfoView {
         }
         mCurrentView.setVisibility(View.VISIBLE);
     }
+
     private boolean readLoginStatus(){
-        SharedPreferences sp=mContext.getSharedPreferences("loginInfo", Context.MODE_PRIVATE);
-        boolean isLogin=sp.getBoolean("isLogin",false);
+        SharedPreferences sp = mContext.getSharedPreferences("loginInfo", Context.MODE_PRIVATE);
+        boolean isLogin = sp.getBoolean("isLogin",false);
         return isLogin;
     }
+
 }

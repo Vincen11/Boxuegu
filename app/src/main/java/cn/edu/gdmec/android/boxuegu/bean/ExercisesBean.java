@@ -1,7 +1,7 @@
 package cn.edu.gdmec.android.boxuegu.bean;
 
 /**
- * Created by student on 17/12/26.
+ * Created by student on 17/12/25.
  */
 
 public class ExercisesBean {
@@ -17,7 +17,6 @@ public class ExercisesBean {
     public String d;
     public int answer;
     public int select;
-
 
 
 }

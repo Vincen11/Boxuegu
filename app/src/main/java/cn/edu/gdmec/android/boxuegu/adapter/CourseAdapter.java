@@ -1,6 +1,5 @@
 package cn.edu.gdmec.android.boxuegu.adapter;
 
-
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -10,7 +9,6 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.io.PipedOutputStream;
 import java.util.List;
 
 import cn.edu.gdmec.android.boxuegu.R;
@@ -21,60 +19,70 @@ import cn.edu.gdmec.android.boxuegu.bean.CourseBean;
  * Created by student on 17/12/27.
  */
 
-public class CourseAdapter extends BaseAdapter{
+public class CourseAdapter extends BaseAdapter {
     private Context mContext;
     private List<List<CourseBean>> cbl;
     public CourseAdapter(Context context){
-        this.mContext=context;
+        this.mContext = context;
     }
+
     public void setData(List<List<CourseBean>> cbl){
-        this.cbl=cbl;
+        this.cbl = cbl;
         notifyDataSetChanged();
     }
+
     @Override
-    public int getCount(){
-        return cbl==null ? 0 : cbl.size();
+    public int getCount() {
+        return cbl == null ? 0 : cbl.size();
     }
+
     @Override
-    public List<CourseBean> getItem(int position){
-        return cbl==null ? null : cbl.get(position);
+    public List<CourseBean> getItem(int position) {
+        return cbl == null ? null : cbl.get(position);
     }
+
     @Override
-    public long getItemId(int position){
+    public long getItemId(int position) {
         return position;
     }
+
     @Override
-    public View getView(int position, View convertView, ViewGroup parent){
+    public View getView(int position, View view, ViewGroup viewGroup) {
         final ViewHolder vh;
-        if (convertView==null){
-            vh=new ViewHolder();
-            convertView= LayoutInflater.from(mContext).inflate(R.layout.course_list_item,null);
-            vh.iv_left_img=(ImageView) convertView.findViewById(R.id.iv_left_img);
-            vh.iv_right_img=(ImageView) convertView.findViewById(R.id.iv_right_img);
-            vh.tv_left_img_title=(TextView) convertView.findViewById(R.id.tv_left_img_title);
-            vh.tv_left_title=(TextView) convertView.findViewById(R.id.tv_left_title);
-            vh.tv_right_img_title=(TextView) convertView.findViewById(R.id.tv_right_img_title);
-            vh.tv_right_title=(TextView) convertView.findViewById(R.id.tv_right_title);
-            convertView.setTag(vh);
-        }else {
-            vh=(ViewHolder) convertView.getTag();
+        if (view == null){
+            vh = new ViewHolder();
+            view = LayoutInflater.from(mContext).inflate(
+                    R.layout.course_list_item,null
+            );
+            vh.iv_left_img = (ImageView) view.findViewById(R.id.iv_left_img);
+            vh.iv_right_img = (ImageView) view.findViewById(R.id.iv_right_img);
+            vh.tv_left_img_title = (TextView) view.findViewById(R.id.tv_left_img_title);
+            vh.tv_right_img_title = (TextView) view.findViewById(R.id.tv_right_img_title);
+            vh.tv_left_title = (TextView) view.findViewById(R.id.tv_left_title);
+            vh.tv_right_title = (TextView) view.findViewById(R.id.tv_right_title);
+            view.setTag(vh);
+        }else{
+            vh = (ViewHolder) view.getTag();
         }
-        final List<CourseBean> list=getItem(position);
+        final List<CourseBean> list = getItem(position);
         if (list!=null){
-            for (int i=0;i<list.size();i++){
-                final CourseBean bean=list.get(i);
+            for (int i= 0;i<list.size();i++){
+                final CourseBean bean = list.get(i);
+
                 switch (i){
                     case 0:
                         vh.tv_left_img_title.setText(bean.imgTitle);
                         vh.tv_left_title.setText(bean.title);
                         setLeftImg(bean.id,vh.iv_left_img);
-                        vh.iv_left_img.setOnClickListener(new View.OnClickListener(){
+                        vh.iv_left_img.setOnClickListener(new View.OnClickListener() {
                             @Override
-                            public void onClick(View v){
-                                Intent intent=new Intent(mContext, VideoListActivity.class);
+                            public void onClick(View view) {
+                                Intent intent = new Intent(mContext,
+                                        VideoListActivity.class);
                                 intent.putExtra("id",bean.id);
                                 intent.putExtra("intro",bean.intro);
                                 mContext.startActivity(intent);
+
                             }
                         });
                         break;
@@ -82,10 +90,11 @@ public class CourseAdapter extends BaseAdapter{
                         vh.tv_right_img_title.setText(bean.imgTitle);
                         vh.tv_right_title.setText(bean.title);
                         setRightImg(bean.id,vh.iv_right_img);
-                        vh.iv_right_img.setOnClickListener(new View.OnClickListener(){
+                        vh.iv_right_img.setOnClickListener(new View.OnClickListener() {
                             @Override
-                            public void onClick(View v){
-                                Intent intent=new Intent(mContext, VideoListActivity.class);
+                            public void onClick(View view) {
+                                Intent intent = new Intent(mContext,
+                                        VideoListActivity.class);
                                 intent.putExtra("id",bean.id);
                                 intent.putExtra("intro",bean.intro);
                                 mContext.startActivity(intent);
@@ -97,28 +106,11 @@ public class CourseAdapter extends BaseAdapter{
                 }
             }
         }
-        return convertView;
+
+        return view;
     }
-    private void setLeftImg(int id,ImageView iv_left_img){
-        switch (id){
-            case 1:
-                iv_left_img.setImageResource(R.drawable.chapter_1_icon);
-                break;
-            case 3:
-                iv_left_img.setImageResource(R.drawable.chapter_3_icon);
-                break;
-            case 5:
-                iv_left_img.setImageResource(R.drawable.chapter_5_icon);
-                break;
-            case 7:
-                iv_left_img.setImageResource(R.drawable.chapter_7_icon);
-                break;
-            case 9:
-                iv_left_img.setImageResource(R.drawable.chapter_9_icon);
-                break;
-        }
-    }
-    private void setRightImg(int id,ImageView iv_right_img){
+
+    private void setRightImg(int id, ImageView iv_right_img) {
         switch (id){
             case 2:
                 iv_right_img.setImageResource(R.drawable.chapter_2_icon);
@@ -137,8 +129,31 @@ public class CourseAdapter extends BaseAdapter{
                 break;
         }
     }
+
+    private void setLeftImg(int id, ImageView iv_left_img) {
+        switch (id){
+            case 1:
+                iv_left_img.setImageResource(R.drawable.chapter_1_icon);
+                break;
+            case 3:
+                iv_left_img.setImageResource(R.drawable.chapter_3_icon);
+                break;
+            case 5:
+                iv_left_img.setImageResource(R.drawable.chapter_5_icon);
+                break;
+            case 7:
+                iv_left_img.setImageResource(R.drawable.chapter_7_icon);
+                break;
+            case 9:
+                iv_left_img.setImageResource(R.drawable.chapter_9_icon);
+                break;
+        }
+    }
+
+
     class ViewHolder{
-        public TextView tv_left_img_title,tv_left_title,tv_right_img_title,tv_right_title;
+        public TextView tv_left_img_title,tv_left_title,tv_right_img_title,
+                tv_right_title;
         public ImageView iv_left_img,iv_right_img;
     }
 }
